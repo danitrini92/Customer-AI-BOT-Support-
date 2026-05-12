@@ -6,7 +6,7 @@
 
 ## 🌐 Live Demo
 
-👉 [Open Live App](https://customer-support-bot.streamlit.app)
+👉[Open Live App](https://x6wzrezmdqqyzpon8ycxwi.streamlit.app)
 
 ---
 
