@@ -35,9 +35,13 @@ def retrieve_faq(query, top_k=2, threshold=0.45):
     q_vec = _embedder.encode([query], convert_to_numpy=True)
     faiss.normalize_L2(q_vec)
     scores, indices = _index.search(q_vec, top_k)
-    return [{**_kb[idx], "score": float(score)}
-            for score, idx in zip(scores[0], indices[0]) if score >= threshold]
-
+    results = []
+    for score, idx in zip(scores[0], indices[0]):
+        if idx == -1:          # ← skip invalid index
+            continue
+        if score >= threshold:
+            results.append({**_kb[idx], "score": float(score)})
+    return results
 
 # ── System prompts ────────────────────────────────────────────────
 
